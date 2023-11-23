@@ -9,7 +9,7 @@ export interface IProductItemInterface {
   stock: number;
   discountPercentage: number;
   thumbnail: string;
-  images: any; // need to update
+  images: Array<string>;
 }
 
 export interface IProductListInterface {
