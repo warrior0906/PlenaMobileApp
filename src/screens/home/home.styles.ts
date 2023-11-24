@@ -8,7 +8,6 @@ export const homePageStyles = () =>
     },
     item: {
       borderWidth: 0.2,
-      height: scaling.vs(200),
       width: '46%',
       marginHorizontal: '2%',
       marginVertical: scaling.vs(8),
@@ -21,7 +20,6 @@ export const homePageStyles = () =>
       width: scaling.hs(100),
       alignSelf: 'center',
       borderRadius: scaling.hs(50),
-      marginTop: scaling.vs(20),
       marginBottom: scaling.hs(8),
       marginVertical: scaling.vs(8),
     },
@@ -30,12 +28,14 @@ export const homePageStyles = () =>
       justifyContent: 'space-between',
     },
     price: {
+      fontSize: scaling.hs(14),
       fontWeight: 'bold',
       marginBottom: scaling.vs(4),
-      maxWidth: '80%',
     },
     name: {
+      fontSize: scaling.hs(12),
       fontWeight: '300',
       marginBottom: scaling.vs(4),
+      maxWidth: '85%',
     },
   });
