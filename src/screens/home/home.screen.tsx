@@ -1,11 +1,13 @@
 import React, {useEffect} from 'react';
 import {View, Text, FlatList, Image} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {useSelector, useDispatch} from 'react-redux';
 import {getAllProducts} from '../../store/slices/productSlice';
 import {RootState} from '../../store/store';
 import {IProductItemInterface} from '../../utils/interfaces';
 import {homePageStyles} from './home.styles';
 import {TouchableIcon} from '../../components/atoms';
+import {Header} from '../../components/organisms';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -38,13 +40,16 @@ const HomeScreen = () => {
   };
 
   return (
-    <FlatList
-      data={productList?.products}
-      renderItem={renderItem}
-      numColumns={2}
-      style={styles.container}
-      keyExtractor={item => item.title}
-    />
+    <SafeAreaView>
+      <Header />
+      <FlatList
+        data={productList?.products}
+        renderItem={renderItem}
+        numColumns={2}
+        style={styles.container}
+        keyExtractor={item => item.title}
+      />
+    </SafeAreaView>
   );
 };
 
