@@ -1,8 +1,11 @@
 import React, {useEffect} from 'react';
-import {View, Text, FlatList, Image} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import {getAllProducts} from '../../store/slices/productSlice';
+import {useNavigation} from '@react-navigation/native';
+import {
+  getAllProducts,
+  setSelectedProduct,
+} from '../../store/slices/productSlice';
 import {RootState} from '../../store/store';
 import {IProductItemInterface} from '../../utils/interfaces';
 import {homePageStyles} from './home.styles';
@@ -14,6 +17,7 @@ const HomeScreen = () => {
   const productList = useSelector(
     (state: RootState) => state.product.productList,
   );
+  const navigation: any = useNavigation();
 
   const styles = homePageStyles();
 
@@ -21,13 +25,20 @@ const HomeScreen = () => {
     dispatch(getAllProducts());
   }, [dispatch]);
 
-  const onPressCart = () => {};
+  const onPressItem = (item: IProductItemInterface) => {
+    dispatch(setSelectedProduct(item));
+    navigation.navigate('Details');
+  };
+
+  const onPressCart = () => {
+    navigation.navigate('Cart');
+  };
 
   const onPressWishListIcon = () => {};
 
   const renderItem = ({item}: {item: IProductItemInterface}) => {
     return (
-      <View style={styles.item}>
+      <TouchableOpacity style={styles.item} onPress={() => onPressItem(item)}>
         <TouchableIcon name="wishlist" onPress={onPressWishListIcon} />
         <Image source={{uri: item.thumbnail}} style={styles.img} />
         <View style={styles.detailsView}>
@@ -35,12 +46,12 @@ const HomeScreen = () => {
           <TouchableIcon name="add" onPress={onPressCart} />
         </View>
         <Text style={styles.name}>{item?.title}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
   return (
-    <SafeAreaView>
+    <View>
       <Header />
       <FlatList
         data={productList?.products}
@@ -49,7 +60,7 @@ const HomeScreen = () => {
         style={styles.container}
         keyExtractor={item => item.title}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

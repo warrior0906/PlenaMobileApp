@@ -19,5 +19,6 @@ export interface IProductListInterface {
 
 export interface ProductState {
   loading: boolean;
-  productList: IProductListInterface;
+  productList: IProductListInterface | null;
+  selectedProduct: IProductItemInterface | null;
 }

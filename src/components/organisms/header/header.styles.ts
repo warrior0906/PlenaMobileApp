@@ -7,11 +7,9 @@ export const headerStyles = () =>
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      height: scaling.vs(100),
+      height: scaling.vs(160),
       padding: scaling.hs(16),
-      marginHorizontal: scaling.hs(8),
       marginBottom: scaling.vs(24),
-      borderRadius: scaling.hs(12),
       backgroundColor: '#1434A4',
     },
     title: {
