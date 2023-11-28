@@ -22,3 +22,11 @@ export interface ProductState {
   productList: IProductListInterface | null;
   selectedProduct: IProductItemInterface | null;
 }
+export interface ICartState {
+  itemList: Array<ICartItems>;
+}
+
+export interface ICartItems {
+  items: IProductItemInterface;
+  quantity: number;
+}

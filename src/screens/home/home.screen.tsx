@@ -6,6 +6,7 @@ import {
   getAllProducts,
   setSelectedProduct,
 } from '../../store/slices/productSlice';
+import {addToCart} from '../../store/slices/cartSlice';
 import {RootState} from '../../store/store';
 import {IProductItemInterface} from '../../utils/interfaces';
 import {homePageStyles} from './home.styles';
@@ -30,8 +31,8 @@ const HomeScreen = () => {
     navigation.navigate('Details');
   };
 
-  const onPressCart = () => {
-    navigation.navigate('Cart');
+  const onPressCart = (item: IProductItemInterface) => {
+    dispatch(addToCart(item));
   };
 
   const onPressWishListIcon = () => {};
@@ -43,7 +44,7 @@ const HomeScreen = () => {
         <Image source={{uri: item.thumbnail}} style={styles.img} />
         <View style={styles.detailsView}>
           <Text style={styles.price}>${item?.price}</Text>
-          <TouchableIcon name="add" onPress={onPressCart} />
+          <TouchableIcon name="add" onPress={() => onPressCart(item)} />
         </View>
         <Text style={styles.name}>{item?.title}</Text>
       </TouchableOpacity>

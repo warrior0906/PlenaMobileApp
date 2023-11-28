@@ -2,12 +2,14 @@ import {configureStore} from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from './sagas';
 import productReducer from './slices/productSlice';
+import cartSlice from './slices/cartSlice';
 
 const sagaMiddle = createSagaMiddleware();
 
 export const store = configureStore({
   reducer: {
     product: productReducer,
+    cart: cartSlice,
   },
   middleware: [sagaMiddle],
 });
