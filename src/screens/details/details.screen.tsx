@@ -1,23 +1,36 @@
-import React from 'react';
-import {FlatList, Image, ScrollView, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  FlatList,
+  Image,
+  NativeScrollEvent,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigation} from '@react-navigation/native';
 import {RootState} from '../../store/store';
 import {detailsScreenStyles} from './details.styles';
 import {Button} from '../../components/molecules';
 import {addToCart} from '../../store/slices/cartSlice';
 
 const DetailsScreen = () => {
+  const styles = detailsScreenStyles();
   const dispatch = useDispatch();
   const product = useSelector(
     (state: RootState) => state.product.selectedProduct,
   );
-  const navigation: any = useNavigation();
+  const [imgActive, setImageActive] = useState(0);
 
-  // need to implement slider for images
-  const renderImages = ({item}: {item: string}) => (
-    <Image source={{uri: item}} style={styles.img} />
-  );
+  const onchange = (nativeEvent: NativeScrollEvent) => {
+    if (nativeEvent) {
+      const slide = Math.ceil(
+        nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width,
+      );
+      if (slide !== imgActive) {
+        setImageActive(slide);
+      }
+    }
+  };
 
   const renderPrice = () => (
     <View style={styles.priceView}>
@@ -33,7 +46,7 @@ const DetailsScreen = () => {
       <Button
         title={'Add to cart'}
         onPress={() => {
-          dispatch(addToCart(product));
+          product && dispatch(addToCart(product));
         }}
         variant={'Outlined'}
       />
@@ -48,7 +61,23 @@ const DetailsScreen = () => {
     </View>
   );
 
-  const styles = detailsScreenStyles();
+  const renderImages = ({item}: {item: string}) => (
+    <View>
+      <Image source={{uri: item}} style={styles.img} />
+      <View style={styles.carouselDotView}>
+        {product?.images?.map((e, index) => (
+          <View
+            style={[
+              styles.carouselDot,
+              imgActive === index ? styles.selectedDot : null,
+            ]}
+            key={e}
+          />
+        ))}
+      </View>
+    </View>
+  );
+
   return (
     <ScrollView style={styles.rootContainer}>
       <Text style={styles.title}>{product?.title}</Text>
@@ -58,6 +87,9 @@ const DetailsScreen = () => {
         renderItem={renderImages}
         horizontal
         keyExtractor={item => item}
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={({nativeEvent}) => onchange(nativeEvent)}
       />
       {renderPrice()}
       {renderButtons()}

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
 import scaling from '../../utils/scaling';
 
 export const detailsScreenStyles = () =>
@@ -19,10 +19,24 @@ export const detailsScreenStyles = () =>
     },
     img: {
       height: scaling.vs(200),
-      width: scaling.hs(328),
+      width: Dimensions.get('window').width,
       marginVertical: scaling.vs(8),
-      marginHorizontal: scaling.hs(8),
-      borderWidth: 1,
+    },
+    carouselDotView: {
+      flexDirection: 'row',
+      position: 'absolute',
+      bottom: scaling.vs(16),
+      marginLeft: scaling.hs(12),
+    },
+    carouselDot: {
+      width: scaling.hs(24),
+      height: scaling.vs(3),
+      borderRadius: scaling.hs(3),
+      backgroundColor: 'lightgrey',
+      marginHorizontal: scaling.hs(3),
+    },
+    selectedDot: {
+      backgroundColor: '#BE8400',
     },
     priceView: {
       paddingHorizontal: scaling.hs(16),
