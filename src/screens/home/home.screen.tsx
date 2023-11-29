@@ -52,7 +52,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <View>
+    <View style={styles.rootContainer}>
       <Header />
       <FlatList
         data={productList?.products}

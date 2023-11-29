@@ -1,14 +1,18 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../store/store';
 import {ICartItems} from '../../utils/interfaces';
 import {cartScreenStyles} from './cart.styles';
 import {addToCart, removeFromCart} from '../../store/slices/cartSlice';
+import {Button, RowView} from '../../components/molecules';
+import {cartDetails} from './cart.constants';
+import {getCartItemCount} from '../../utils/common';
 
 const CartScreen = () => {
   const dispatch = useDispatch();
   const list = useSelector((state: RootState) => state.cart.itemList);
+  const cartItemCount = useMemo(() => getCartItemCount(list), [list]);
 
   const styles = cartScreenStyles();
 
@@ -41,8 +45,25 @@ const CartScreen = () => {
       </View>
     );
   };
+
+  const renderFooter = () => (
+    <View style={styles.footer}>
+      {cartDetails(list)?.map(e => (
+        <RowView title={e?.title} value={e?.value} key={e?.title} />
+      ))}
+      <Button
+        title={'Proceed to checkout'}
+        onPress={() => {}}
+        variant="Filled"
+        containerStyle={styles.btnStyle}
+      />
+    </View>
+  );
   return (
-    <FlatList data={list} renderItem={renderItem} style={styles.container} />
+    <View style={styles.container}>
+      <FlatList data={list} renderItem={renderItem} />
+      {cartItemCount > 0 ? renderFooter() : null}
+    </View>
   );
 };
 

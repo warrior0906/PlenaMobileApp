@@ -4,6 +4,7 @@ import scaling from '../../utils/scaling';
 export const cartScreenStyles = () =>
   StyleSheet.create({
     container: {
+      flex: 1,
       paddingTop: scaling.vs(32),
       backgroundColor: '#FFFF',
     },
@@ -36,5 +37,14 @@ export const cartScreenStyles = () =>
       paddingVertical: scaling.vs(6),
       backgroundColor: 'lightgrey',
       borderRadius: scaling.hs(20),
+    },
+    footer: {
+      borderRadius: scaling.hs(12),
+      marginHorizontal: scaling.hs(8),
+      paddingVertical: scaling.vs(24),
+      backgroundColor: 'lightgrey',
+    },
+    btnStyle: {
+      flex: 0,
     },
   });

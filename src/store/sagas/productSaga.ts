@@ -11,5 +11,4 @@ function* productSaga() {
   const data = yield call(() => fetch(api.allProducts));
   const formattedData: IProductListInterface = yield data.json();
   yield put(setAllProducts(formattedData));
-  console.log('data', formattedData);
 }

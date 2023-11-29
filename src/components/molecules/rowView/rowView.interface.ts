@@ -1,8 +1,7 @@
 import {StyleProp, ViewStyle} from 'react-native';
 
-export interface IButtonInterface {
+export interface IRowViewInterface {
   title: string;
-  onPress: () => void;
-  variant: 'Outlined' | 'Filled';
+  value: string;
   containerStyle?: StyleProp<ViewStyle>;
 }

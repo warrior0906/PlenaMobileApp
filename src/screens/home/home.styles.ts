@@ -3,8 +3,12 @@ import scaling from '../../utils/scaling';
 
 export const homePageStyles = () =>
   StyleSheet.create({
+    rootContainer: {
+      flex: 1,
+    },
     container: {
       marginHorizontal: scaling.hs(8),
+      paddingBottom: scaling.vs(50),
     },
     item: {
       borderWidth: 0.2,

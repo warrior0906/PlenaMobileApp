@@ -1,3 +1,4 @@
 import Button from './button/button';
+import RowView from './rowView/rowView';
 
-export {Button};
+export {Button, RowView};
