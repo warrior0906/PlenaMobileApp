@@ -8,13 +8,15 @@ export const detailsScreenStyles = () =>
       paddingVertical: scaling.hs(16),
     },
     title: {
-      textAlign: 'center',
-      fontSize: scaling.hs(48),
+      textAlign: 'left',
+      fontSize: scaling.hs(44),
       fontWeight: '200',
+      paddingHorizontal: scaling.hs(16),
     },
     rating: {
       paddingHorizontal: scaling.hs(16),
       paddingVertical: scaling.vs(12),
+      marginTop: scaling.vs(16),
       opacity: 0.6,
     },
     img: {

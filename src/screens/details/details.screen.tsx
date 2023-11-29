@@ -21,7 +21,7 @@ const DetailsScreen = () => {
   const product = useSelector(
     (state: RootState) => state.product.selectedProduct,
   );
-  const [imgActive, setImageActive] = useState(0);
+  const [imgActive, setImageActive] = useState<number>(0);
 
   const onchange = (nativeEvent: NativeScrollEvent) => {
     if (nativeEvent) {

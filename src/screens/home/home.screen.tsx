@@ -66,6 +66,7 @@ const HomeScreen = () => {
         numColumns={2}
         style={styles.container}
         keyExtractor={item => item.title}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
