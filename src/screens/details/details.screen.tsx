@@ -12,6 +12,8 @@ import {RootState} from '../../store/store';
 import {detailsScreenStyles} from './details.styles';
 import {Button} from '../../components/molecules';
 import {addToCart} from '../../store/slices/cartSlice';
+import {TouchableIcon} from '../../components/atoms';
+import {updateFavoriteItems} from '../../store/slices/productSlice';
 
 const DetailsScreen = () => {
   const styles = detailsScreenStyles();
@@ -61,9 +63,14 @@ const DetailsScreen = () => {
     </View>
   );
 
-  const renderImages = ({item}: {item: string}) => (
+  const renderItem = ({item}: {item: string}) => (
     <View>
       <Image source={{uri: item}} style={styles.img} />
+      <TouchableIcon
+        name={product?.favorite ? 'favorite' : 'wishlist'}
+        onPress={() => product && dispatch(updateFavoriteItems(product))}
+        containerStyle={styles.favoriteIcon}
+      />
       <View style={styles.carouselDotView}>
         {product?.images?.map((e, index) => (
           <View
@@ -84,7 +91,7 @@ const DetailsScreen = () => {
       <Text style={styles.rating}>{product?.rating}/5 Rating</Text>
       <FlatList
         data={product?.images}
-        renderItem={renderImages}
+        renderItem={renderItem}
         horizontal
         keyExtractor={item => item}
         pagingEnabled

@@ -38,6 +38,15 @@ export const detailsScreenStyles = () =>
     selectedDot: {
       backgroundColor: '#BE8400',
     },
+    favoriteIcon: {
+      position: 'absolute',
+      right: scaling.hs(16),
+      top: scaling.vs(16),
+      backgroundColor: '#FFFF',
+      paddingHorizontal: scaling.hs(16),
+      paddingVertical: scaling.vs(12),
+      borderRadius: scaling.hs(12),
+    },
     priceView: {
       paddingHorizontal: scaling.hs(16),
       paddingTop: scaling.vs(12),

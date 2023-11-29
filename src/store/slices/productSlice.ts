@@ -45,6 +45,9 @@ export const productSlice = createSlice({
         updatedList[productIndex].favorite =
           !updatedList[productIndex].favorite;
         state.productList = {...state.productList, ...{products: updatedList}};
+        if (state.selectedProduct !== null) {
+          state.selectedProduct = updatedList[productIndex];
+        }
       }
     },
   },

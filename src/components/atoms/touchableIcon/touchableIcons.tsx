@@ -4,13 +4,18 @@ import icons from '../../../assets/icons';
 import {ITouchableIconInterface} from './touchableIcon.interface';
 import {touchableIconStyles} from './touchableIcon.styles';
 
-const TouchableIcon = ({name, onPress, number}: ITouchableIconInterface) => {
+const TouchableIcon = ({
+  name,
+  onPress,
+  number,
+  containerStyle,
+}: ITouchableIconInterface) => {
   const styles = touchableIconStyles();
 
   const icon: any = icons[name as keyof typeof icons];
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={onPress} style={containerStyle}>
       <Image source={icon} style={styles.icon} />
       {number ? (
         <View style={styles.numberView}>
