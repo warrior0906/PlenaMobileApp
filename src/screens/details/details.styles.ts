@@ -38,11 +38,10 @@ export const detailsScreenStyles = () =>
       marginRight: scaling.hs(12),
     },
     discountView: {
-      padding: scaling.hs(8),
-      borderWidth: 1,
-      borderColor: '#1434A4',
+      paddingHorizontal: scaling.hs(12),
+      paddingVertical: scaling.hs(8),
       backgroundColor: '#1434A4',
-      borderRadius: scaling.hs(10),
+      borderRadius: scaling.hs(16),
     },
     discount: {
       color: '#FFF',

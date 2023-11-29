@@ -10,6 +10,7 @@ export interface IProductItemInterface {
   discountPercentage: number;
   thumbnail: string;
   images: Array<string>;
+  favorite: boolean;
 }
 
 export interface IProductListInterface {

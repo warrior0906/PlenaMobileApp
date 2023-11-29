@@ -32,11 +32,30 @@ export const productSlice = createSlice({
     ) => {
       state.selectedProduct = action.payload;
     },
+    updateFavoriteItems: (
+      state,
+      action: PayloadAction<IProductItemInterface>,
+    ) => {
+      const productIndex =
+        state.productList?.products?.findIndex(
+          e => e?.id === action.payload.id,
+        ) ?? -1;
+      if (productIndex > -1 && state.productList) {
+        const updatedList = [...state.productList.products];
+        updatedList[productIndex].favorite =
+          !updatedList[productIndex].favorite;
+        state.productList = {...state.productList, ...{products: updatedList}};
+      }
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const {getAllProducts, setAllProducts, setSelectedProduct} =
-  productSlice.actions;
+export const {
+  getAllProducts,
+  setAllProducts,
+  setSelectedProduct,
+  updateFavoriteItems,
+} = productSlice.actions;
 
 export default productSlice.reducer;
